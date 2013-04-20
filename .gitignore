@@ -36,3 +36,6 @@ nosetests.xml
 
 # Virtualenv Junk
 .venv
+
+# SQLite
+tmp.db
