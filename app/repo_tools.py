@@ -1,7 +1,20 @@
-from tempfile import SpooledTemporaryFile
+from tempfile import mkdtemp, SpooledTemporaryFile
+from git import *
 import requests
 import tarfile
 import zipfile
+
+# NOTE: To push back to the parent repo:
+# repo.remotes.origin.push()
+
+
+def clone_repo(remote_url):
+    """Create a temporary instance of a repo based
+    on the remote url. I don't think we can rely on
+    persistent storage on heroku so we'll clone
+    for each usage! Really small function but just in
+    case we need some more boilerplate in the future"""
+    return Repo.clone_from(remote_url, mkdtemp())
 
 
 def archive_to_repo(archive_path, repo, archive_type="tar"):
