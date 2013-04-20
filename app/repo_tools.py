@@ -29,3 +29,19 @@ def archive_to_repo(archive_path, repo, archive_type="tar"):
     # Cleanup, outta here!
     archive.close()
     tmp.close()
+
+
+def file_to_repo(file_path, file_name, repo):
+    """Downloads a file and sticks it into a repo.
+    Adds and commits it. Currently we're using this for
+    the single jar repo!!"""
+    # Download the file and stick it in the directory!
+    r = requests.get(file_path)
+    dest = "%s/%s" % (repo.working_dir, file_name)
+    f = open(dest, "w")
+    f.write(r.content)
+    # Add and commit the file
+    repo.git.add(dest)
+    repo.git.commit(m="Added %s" % file_name)
+    # Cleanup
+    f.close()
