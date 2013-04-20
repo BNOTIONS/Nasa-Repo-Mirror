@@ -159,10 +159,25 @@ INSTALLED_APPS = (
     'app',
     'djcelery',
 )
+
+#===============CELERY SETTINGS================
+from datetime import timedelta
 import djcelery
 BROKER_URL = 'redis://localhost:6379/0'
 CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
 djcelery.setup_loader()
+
+
+CELERYBEAT_SCHEDULE = {
+    'add-every-30-seconds': {
+        'task': 'app.tasks.async_tasks.add',
+        'schedule': timedelta(seconds=30),
+        'args': (16, 16)
+    },
+}
+CELERY_TIMEZONE = 'UTC'
+#==========================================
+
 # Allow query strings to override waffle
 WAFFLE_SWITCH_DEFAULT = True
 
