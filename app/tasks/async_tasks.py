@@ -25,4 +25,5 @@ def update_repos():
         elif repo.source_type == 'git':
             pass  # I DON'T THINK WE'RE DOING THIS BUT IN CASE
         # Send this back to the origin
-        clone.remotes.origin.push()
+        # For some reason the remotes in clone get lost
+        repo.get_repo().remotes.origin.push()
