@@ -174,6 +174,10 @@ CELERYBEAT_SCHEDULE = {
         'schedule': timedelta(seconds=30),
         'args': (16, 16)
     },
+    'update-repositories-every-hour': {
+        'task': 'app.tasks.async_tasks.update_repos',
+        'schedule': timedelta(minutes=60),
+    }
 }
 CELERY_TIMEZONE = 'UTC'
 #==========================================
