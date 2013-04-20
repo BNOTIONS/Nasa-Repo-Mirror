@@ -156,9 +156,13 @@ INSTALLED_APPS = (
     'rest_framework',
     'rest_framework.authtoken',  # Rest Framework API Token authentication
     'compressor',
-    'app'
+    'app',
+    'djcelery',
 )
-
+import djcelery
+BROKER_URL = 'redis://localhost:6379/0'
+CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
+djcelery.setup_loader()
 # Allow query strings to override waffle
 WAFFLE_SWITCH_DEFAULT = True
 
