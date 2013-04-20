@@ -166,7 +166,7 @@ import djcelery
 BROKER_URL = 'redis://localhost:6379/0'
 CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
 djcelery.setup_loader()
-
+CELERY_IMPORTS = ("app.tasks.async_tasks", )
 
 CELERYBEAT_SCHEDULE = {
     'add-every-30-seconds': {
