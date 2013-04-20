@@ -1,11 +1,9 @@
 from tempfile import mkdtemp, SpooledTemporaryFile
 from git import *
+from os.path import basename
 import requests
 import tarfile
 import zipfile
-
-# NOTE: To push back to the parent repo:
-# repo.remotes.origin.push()
 
 
 def clone_repo(remote_url):
@@ -49,6 +47,7 @@ def file_to_repo(file_path, file_name, repo):
     Adds and commits it. Currently we're using this for
     the single jar repo!!"""
     # Download the file and stick it in the directory!
+    file_name = basename(file_path)
     r = requests.get(file_path)
     dest = "%s/%s" % (repo.working_dir, file_name)
     f = open(dest, "w")
