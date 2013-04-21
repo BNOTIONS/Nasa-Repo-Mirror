@@ -44,3 +44,4 @@ tmp.db
 *.rdb
 *.db
 app/repos/*
+app/static/CACHE

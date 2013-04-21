@@ -159,7 +159,6 @@ INSTALLED_APPS = (
     'waffle',
     'rest_framework',
     'rest_framework.authtoken',  # Rest Framework API Token authentication
-    'compressor',
     'app',
     'djcelery',
 )
@@ -188,28 +187,6 @@ CELERY_TIMEZONE = 'UTC'
 
 # Allow query strings to override waffle
 WAFFLE_SWITCH_DEFAULT = True
-
-# Configure django_compressor to precompile all the files
-COMPRESS_PRECOMPILERS = (
-    ('text/coffeescript', 'coffee --compile --stdio'),
-    ('text/less', 'lessc {infile} {outfile}'),
-    ('text/x-sass', 'sass {infile} {outfile}'),
-    ('text/x-scss', 'sass --scss {infile} {outfile}'),
-    ('text/stylus', 'stylus < {infile} > {outfile}'),
-    ('text/ng-template', 'python manage.py ng_compile {infile} > {outfile}'),
-)
-
-if ENV == 'production':
-    #AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID', None)
-    #AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY', None)
-    #AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_STORAGE_BUCKET_NAME', None)
-    #AWS_PRELOAD_METADATA = True
-
-    COMPRESS_ENABLED = True
-    COMPRESS_OFFLINE = True
-    #COMPRESS_STORAGE = STATICFILES_STORAGE = 'app.util.storage.CachedS3BotoStorage'
-    COMPRESS_URL = STATIC_URL
-    COMPRESS_ROOT = STATIC_ROOT
 
 TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
 NOSE_ARGS = ['--failed', '--stop', '--processes=8', '--process-timeout=120', '--with-cov', '--cover-package=app']
