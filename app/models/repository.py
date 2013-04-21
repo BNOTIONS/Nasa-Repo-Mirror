@@ -1,6 +1,7 @@
 from app.models import Model
 from django.db import models
-from app.repo_tools import clone_repo
+from app.settings import REPO_ROOT
+from git import Repo
 
 
 class Repository(Model):
@@ -27,4 +28,8 @@ class Repository(Model):
         choices=SOURCE_TYPE_CHOICES, default=SVN)
 
     def get_repo(self):
-        return clone_repo(self.remote_url)
+        return Repo(REPO_ROOT + "/" + self.short_name)
+
+    def create_repo(self):
+        return Repo.clone_from(
+            self.remote_url, REPO_ROOT + "/" + self.short_name)

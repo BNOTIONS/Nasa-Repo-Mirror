@@ -43,3 +43,4 @@ tmp.db
 *.png alias
 *.rdb
 *.db
+app/repos/*

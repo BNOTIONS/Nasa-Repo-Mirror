@@ -1,5 +1,7 @@
 from tempfile import mkdtemp, SpooledTemporaryFile
 from git import *
+import os
+import shutil
 from os.path import basename
 import requests
 import tarfile
@@ -32,11 +34,16 @@ def archive_to_repo(archive_path, repo, archive_type="tar"):
         archive = zipfile.open(tmp)
     else:
         raise ValueError("Unrecognized Archive Type")
+    # Clear working files
+    clear_working_dir(repo.working_dir)
     # Extract to the repo path
     archive.extractall(repo.working_dir)
     # Add and commit everything!
-    repo.git.add(".", A=True)
-    repo.git.commit(m="New archive version")
+    try:
+        repo.git.add(".", A=True)
+        repo.git.commit(m="New archive version")
+    except:
+        pass  # May be that there was nothing new to commit
     # Cleanup, outta here!
     archive.close()
     tmp.close()
@@ -57,3 +64,13 @@ def file_to_repo(file_path, file_name, repo):
     repo.git.commit(m="Added %s" % file_name)
     # Cleanup
     f.close()
+
+
+def clear_working_dir(path):
+    for root, dirs, files in os.walk(path):
+        for f in files:
+            if ".git" not in os.path.join(root, f):
+                os.unlink(os.path.join(root, f))
+        for d in dirs:
+            if ".git" not in os.path.join(root, d):
+                shutil.rmtree(os.path.join(root, d))

@@ -4,6 +4,8 @@ import os
 ENV = os.environ.get('ENV', 'development').lower()
 PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 
+REPO_ROOT = PROJECT_ROOT + "/repos"
+
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
