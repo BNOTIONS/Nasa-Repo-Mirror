@@ -39,6 +39,12 @@ class Repository(Model):
     def __repr__(self):
         return "%s (%s)" % (self.name, self.short_name)
 
+    def __unicode__(self):
+        return "%s (%s)" % (self.name, self.short_name)
+
+    def __str__(self):
+        return "%s (%s)" % (self.name, self.short_name)
+
 
 @receiver(post_save, sender=Repository)
 def create_git_repo(sender, instance, **kwargs):
