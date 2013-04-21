@@ -29,4 +29,4 @@ def update_repos():
         # Send this back to the origin
         # For some reason the remotes in clone get lost
         print "pushing to %s" % repo.get_repo().remotes.origin.url
-        repo.get_repo().remotes.origin.push()
+        repo.get_repo().remotes.origin.push("master")
