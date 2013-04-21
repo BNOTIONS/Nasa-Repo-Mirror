@@ -17,6 +17,7 @@ def update_repos():
     for repo in Repository.objects.all():
         clone = repo.get_repo()
         # Update the repo in the required way
+        print "updating repo"
         if repo.source_type == 'tar' or source_type == 'zip':
             archive_to_repo(repo.source_url, clone, repo.source_type)
         elif repo.source_type == 'file':
@@ -27,4 +28,5 @@ def update_repos():
             return  # I DON'T THINK WE'RE DOING THIS BUT IN CASE
         # Send this back to the origin
         # For some reason the remotes in clone get lost
+        print "pushing to %s" % repo.get_repo().remotes.origin.url
         repo.get_repo().remotes.origin.push()

@@ -69,11 +69,8 @@ def file_to_repo(file_path, file_name, repo):
 def clear_working_dir(path):
     for root, dirs, files in os.walk(path):
         for f in files:
-            print "F: " + f
-            print os.path.join(root, f)
-            # os.unlink(os.path.join(root, f))
+            if ".git" not in os.path.join(root, f):
+                os.unlink(os.path.join(root, f))
         for d in dirs:
-            if ".git" not in d:
-                print "D: " + d
-                print os.path.join(root, d)
-                # shutil.rmtree(os.path.join(root, d))
+            if ".git" not in os.path.join(root, d):
+                shutil.rmtree(os.path.join(root, d))
