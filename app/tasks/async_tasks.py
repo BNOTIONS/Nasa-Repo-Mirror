@@ -2,6 +2,7 @@ from celery import task
 from app.repo_tools import *
 from app.models.repository import Repository
 
+
 @task()
 def add(x, y):
     return x + y
@@ -21,9 +22,9 @@ def update_repos():
         elif repo.source_type == 'file':
             file_to_repo(repo.source_url, clone)
         elif repo.source_type == 'svn':
-            pass  # FIGURE THIS OUT!!!
+            return  # FIGURE THIS OUT!!!
         elif repo.source_type == 'git':
-            pass  # I DON'T THINK WE'RE DOING THIS BUT IN CASE
+            return  # I DON'T THINK WE'RE DOING THIS BUT IN CASE
         # Send this back to the origin
         # For some reason the remotes in clone get lost
         repo.get_repo().remotes.origin.push()

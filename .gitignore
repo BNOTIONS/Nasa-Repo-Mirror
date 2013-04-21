@@ -39,3 +39,5 @@ nosetests.xml
 
 # SQLite
 tmp.db
+
+app/repos/*

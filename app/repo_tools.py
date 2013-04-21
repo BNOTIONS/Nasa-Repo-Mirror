@@ -39,8 +39,11 @@ def archive_to_repo(archive_path, repo, archive_type="tar"):
     # Extract to the repo path
     archive.extractall(repo.working_dir)
     # Add and commit everything!
-    repo.git.add(".", A=True)
-    repo.git.commit(m="New archive version")
+    try:
+        repo.git.add(".", A=True)
+        repo.git.commit(m="New archive version")
+    except:
+        pass  # May be that there was nothing new to commit
     # Cleanup, outta here!
     archive.close()
     tmp.close()
@@ -64,9 +67,13 @@ def file_to_repo(file_path, file_name, repo):
 
 
 def clear_working_dir(path):
-    for root, dirs, files in os.path.walk(path):
+    for root, dirs, files in os.walk(path):
         for f in files:
-            os.unlink(f)
+            print "F: " + f
+            print os.path.join(root, f)
+            # os.unlink(os.path.join(root, f))
         for d in dirs:
-            if d != ".git":
-                shutil.rmtree(d)
+            if ".git" not in d:
+                print "D: " + d
+                print os.path.join(root, d)
+                # shutil.rmtree(os.path.join(root, d))
