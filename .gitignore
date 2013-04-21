@@ -39,5 +39,8 @@ nosetests.xml
 
 # SQLite
 tmp.db
-
+*.scssc
+*.png alias
+*.rdb
+*.db
 app/repos/*

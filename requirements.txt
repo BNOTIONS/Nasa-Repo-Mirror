@@ -27,3 +27,4 @@ smmap==0.8.2
 splinter==0.5.0
 django-celery-with-redis==3.0
 wsgiref==0.1.2
+hamlpy==0.82.2
