@@ -6,6 +6,9 @@ $iconWhiteSpritePath: '/static/vendor/bootstrap/glyphicons-halflings-white.png';
 body {
   padding-bottom: 40px;
   color: #5a5a5a;
+  background-image: url(/static/images/BG.png);
+  background-position: center top; 
+  min-height: 850px;
 }
 
 body > .container {
@@ -78,5 +81,125 @@ body > .container {
   }
 }
 
+@import url(http://fonts.googleapis.com/css?family=Roboto:100);
+.black-mirror-nav {
+  height: 80px;
+  ul{
+    list-style-type:none;
+    margin:0;
+    padding:0;
+    li {
+      display:inline;
+      a {
+        color: white;
+        &:hover { color: white; }
+        &:visited { color: white; }
+      }
+    }
+  }
+  line-height: 80px;
+  padding-left: 200px;
+  text-align: right;
+  color: white;
+}
+.hero-unit {
+  padding-top: 10px;
+  margin-top: 0px;
+  .black-mirror-title {
+    text-align: left;
+    font-size: 40px;
+    width: 100%
+  }
+  .black-mirror-subtitle {
+    font-size: 20px;
+    font-weight: bold;
+    width: 350px;
+    text-align:left;
+    padding-left: 30px;
+    padding-top: 20px;
+  }
+  font-family: 'Roboto', sans-serif;
+  float:right;
+  color: white;
+  background: rgb(255, 255, 255) transparent; /* default fallback */
+  background: rgba(255, 255, 255, 0); /* nice browsers */
+}
 
+.landing {
+  @extend .container;
+}
+body > .container, body > .landing {
+  margin-top: 0px;
+}
 
+.transparent {
+    background: rgb(255, 255, 255) transparent; /* default fallback */
+  background: rgba(255, 255, 255, 0); /* nice browsers */
+}
+
+.github_btn {
+  text-align: center;
+  font-size: 30px;
+  font-family: 'Roboto', sans-serif;
+  text-shadow: 0px 2px 0px #000000;
+  border: none;
+  border-radius: 4px;
+  box-shadow: 0px 0px 100px 10px #000000;
+  color: white;
+  width: 290px;
+  height: 70px;
+  background: #b40080; /* Old browsers */
+  background: -moz-linear-gradient(top, #b40080 0%, #76006b 98%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#b40080), color-stop(98%,#76006b)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #b40080 0%,#76006b 98%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, #b40080 0%,#76006b 98%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, #b40080 0%,#76006b 98%); /* IE10+ */
+  background: linear-gradient(to bottom, #b40080 0%,#76006b 98%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b40080', endColorstr='#76006b',GradientType=0 ); /* IE6-9 */
+}
+
+.call_to_action{
+  padding-left: 30px;
+  padding-top: 25px;
+}
+
+.half-hero {
+  width: 50%;
+  box-sizing:border-box;
+  padding: 10px;
+  float:right;
+}
+
+.hero-3-panel {
+  width: 100%;
+  display:block;
+}
+
+.hero-third-panel {
+  width: 33%;
+  float:left;
+  box-sizing:border-box;
+  padding: 25px;
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+  color: white;
+  li {
+    font-size: 24px;
+    list-style-type: square;
+    color: #fb6aff;
+  }
+  h1 {
+    font-size: 34px;
+  }
+}
+
+.bnotions {
+  width: 100%;
+  display: block;
+  box-sizing:border-box;
+  img{
+    margin-top: 60px;
+  }
+  padding-right: 40px;
+  text-align: right;
+}

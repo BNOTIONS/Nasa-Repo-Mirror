@@ -2,6 +2,7 @@ from celery import task
 from app.repo_tools import *
 from app.models.repository import Repository
 
+
 @task()
 def add(x, y):
     return x + y
