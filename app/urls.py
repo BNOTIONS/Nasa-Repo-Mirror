@@ -14,9 +14,6 @@ import json
 from django.contrib import admin
 admin.autodiscover()
 
-# Import the API
-from app import api
-
 
 class JSONResponse(HttpResponse):
     """
@@ -30,14 +27,9 @@ class JSONResponse(HttpResponse):
 
 # define the catch all
 def index(request):
-    user_json = {}
-    if request.user.is_authenticated():
-        serialized = api.user.UserSerializer(request.user)
-        user_json = serialized.data
-
     return render_to_response('index.html', {
-      'user': request.user,
-      'user_json': JSONRenderer().render(user_json)
+        'user': {},
+        'user_json': '{}'
     })
 
 @csrf_exempt
@@ -94,8 +86,6 @@ urlpatterns = patterns('',
     # Uncomment the next line to enable the admin:
     url(r'^admin/?', include(admin.site.urls)),
     url(r'^favicon.ico$', redirect_to, {'url': '/static/favicon.ico'}),
-
-    url(r'^api', include(api.urls)),
 
     # log in, log out routes.
     url(r'^auth/?', auth, name='auth'),
