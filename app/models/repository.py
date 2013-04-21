@@ -36,6 +36,9 @@ class Repository(Model):
         return Repo.clone_from(
             self.remote_url, REPO_ROOT + "/" + self.short_name)
 
+    def __repr__(self):
+        return "%s (%s)" % (self.name, self.short_name)
+
 
 @receiver(post_save, sender=Repository)
 def create_git_repo(sender, instance, **kwargs):
