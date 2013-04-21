@@ -1,4 +1,6 @@
 from app.models import Model
+from django.dispatch import receiver
+from django.db.models.signals import post_save
 from django.db import models
 from app.settings import REPO_ROOT
 from git import Repo
@@ -33,3 +35,9 @@ class Repository(Model):
     def create_repo(self):
         return Repo.clone_from(
             self.remote_url, REPO_ROOT + "/" + self.short_name)
+
+
+@receiver(post_save, sender=Repository)
+def create_git_repo(sender, instance, **kwargs):
+    if instance.source_type != "svn":
+        instance.create_repo()
