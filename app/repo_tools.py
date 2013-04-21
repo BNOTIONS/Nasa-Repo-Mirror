@@ -17,6 +17,13 @@ def clone_repo(remote_url):
     return Repo.clone_from(remote_url, mkdtemp())
 
 
+def update_svn_repo(repo):
+    """Instruct a repo with a svn remote to update itself,
+    and rebase the changes back into the repo"""
+    repo.git.svn("fetch")
+    repo.git.svn("rebase")
+
+
 def archive_to_repo(archive_path, repo, archive_type="tar"):
     """Downloads a archive from the specified path,
     extracts it into the repo's directory, commits
