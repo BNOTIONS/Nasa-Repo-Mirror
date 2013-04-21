@@ -172,11 +172,6 @@ djcelery.setup_loader()
 CELERY_IMPORTS = ("app.tasks.async_tasks", )
 
 CELERYBEAT_SCHEDULE = {
-    'add-every-30-seconds': {
-        'task': 'app.tasks.async_tasks.add',
-        'schedule': timedelta(seconds=30),
-        'args': (16, 16)
-    },
     'update-repositories-every-hour': {
         'task': 'app.tasks.async_tasks.update_repos',
         'schedule': timedelta(minutes=60),

@@ -4,11 +4,6 @@ from app.models.repository import Repository
 
 
 @task()
-def add(x, y):
-    return x + y
-
-
-@task()
 def update_repos():
     """Update all repos in the system"""
     # Clone the remote repo to the machine
