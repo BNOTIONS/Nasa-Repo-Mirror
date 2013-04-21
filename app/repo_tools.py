@@ -44,7 +44,7 @@ def archive_to_repo(archive_path, repo, archive_type="tar"):
     # Clear working files
     clear_working_dir(repo.working_dir)
     # Extract to the repo path
-    archive.extractall(repo.working_dir)
+    archive.extract(repo.working_dir)
     # Add and commit everything!
     try:
         repo.git.add(".", A=True)
